@@ -5,32 +5,44 @@
 class Home
 {
 private:
-    Apart* apart;
-    int apartSize;
+    Apart* home;
+    int homeSize;
 public:
     Home(int size) :
-        apartSize{ size },
-        apart{ new Apart[size] } 
+        homeSize{ size },
+        home{ new Apart[size] } 
     {
         for (int i = 0; i < size; i++)
         {
             cout << "Enter the size of the apartment: ";
             int sizeap{};
             cin >> sizeap;
-            apart[i] = Apart(sizeap);
+            home[i] = Apart(sizeap);
         }
     }
-    Home(const Home& home) :
-        apartSize{ home.apartSize },
-        apart{ new Apart[home.apartSize] }
+    Home(const Home& homee) :
+        homeSize{ homee.homeSize },
+        home{ new Apart[homee.homeSize] }
     {
-        for (int i = 0; i < apartSize; i++)
+        for (int i = 0; i < homeSize; i++)
         {
-            apart[i] = home.apart[i];
+            home[i] = homee.home[i];
         }
     }
     ~Home()
     {
-        delete[] apart;
+        for (int i = 0; i < homeSize; i++)
+        {
+            for (int j = 0; j < home[i].getapartSize(); j++)
+            {
+                Person* a = home[i].getApart();
+                delete[] a[j].getPerson();
+                cout << "person delete" << endl;
+            }
+            delete[] home[i].getApart();
+            cout << "apart delete" << endl;
+        }
+        delete[] home;
+        cout << "home delete" << endl;
     }
 };

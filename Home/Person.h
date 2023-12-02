@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-
+using namespace std;
 class Person
 {
 private:
@@ -8,23 +8,18 @@ private:
 public:
 	Person() : fullname{ nullptr }
 	{}
-
 	Person(const char* name) 
-	: fullname{new char (strlen(name) + 1)}
+	: fullname{new char [strlen(name) + 1]}
 	{
 		strcpy_s(fullname, strlen(name) + 1, name);
 	}
-
 	Person(const Person& person)
 	{
 		fullname = new char(strlen(person.fullname) + 1);
 		strcpy_s(fullname, strlen(person.fullname) + 1, person.fullname);
 	}
-
-	~Person()
-	{
-		delete[] fullname;
+	char* getPerson() {
+		return fullname;
 	}
-
 };
 

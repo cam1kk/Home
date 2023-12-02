@@ -5,36 +5,37 @@ using namespace std;
 class Apart
 {
 private:
-    Person* person;
-    int personSize;
+    Person* apart;
+    int apartSize;
 public:
-    Apart() : person{ nullptr }
+    Apart() : apart{ nullptr }
     {}
     Apart(int size) : 
-        personSize{ size },
-        person{ new Person[size] }
+        apartSize{ size },
+        apart{ new Person[size] }
     {
         for (int i = 0; i < size; i++)
         {
             cout << "Enter full name(Max 30): ";
-            char* name = new char[30];
+            char name[30]{};
             cin >> name;
-            person[i] = Person(name);
-            delete[] name;
+            apart[i] = Person(name);
         }
     }
-    Apart(const Apart& apart)
-        : personSize{apart.personSize},
-          person{new Person[apart.personSize]}
+    Apart(const Apart& apartt)
+        : apartSize{apartt.apartSize},
+          apart{new Person[apartt.apartSize]}
     {
-        for (int i = 0; i < personSize; i++)
+        for (int i = 0; i < apartSize; i++)
         {
-            person[i] = apart.person[i]; 
+            apart[i] = apartt.apart[i]; 
         }
     }
-    ~Apart()
-    {
-        delete[] person;
+    Person* getApart() {
+        return apart;
+    }
+    int getapartSize() {
+        return apartSize;
     }
 };
 

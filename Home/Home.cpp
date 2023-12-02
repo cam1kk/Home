@@ -5,7 +5,5 @@
 using namespace std;
 
 int main() {
-	Home home(5);
-
-	
+	Home home(1);
 }
